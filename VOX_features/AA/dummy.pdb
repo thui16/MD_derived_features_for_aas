@@ -1,0 +1,10 @@
+TITLE     dummy_ref_translated_v4
+REMARK   4      COMPLIES WITH FORMAT V. 3.0, 1-DEC-2006
+REMARK 888
+REMARK 888 WRITTEN BY MAESTRO (A PRODUCT OF SCHRODINGER, LLC)
+CRYST1   31.063   31.063   31.063  90.00  90.00  90.00 P 1           1
+ATOM      1  N   TRP X   2       1.449   0.000   0.000  0.00  0.00           N1+
+ATOM      2  CA  TRP X   2       0.000   0.000   0.000  0.00  0.00           C  
+ATOM      3  C   TRP X   2      -0.523   1.429   0.000  0.00  0.00           C  
+TER       3      TRP X   2
+END   
