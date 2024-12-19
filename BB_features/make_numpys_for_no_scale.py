@@ -8,10 +8,10 @@ import pandas as pd
 
 
 #Read the files in the folder that contains the .xvg (or .txt) files. 
-#In our case, the .txt files are named 'XXX_both.txt' (where XXX is the amino acid three letter code) and within another directory called 'xvgs_standard_name'. 
+#In our case, the .txt files are named 'XXX_both.txt' (where XXX is the amino acid three letter code) 
 
 file_list=[]
-for name in glob.glob('../../xvgs_standard_name/*_both.txt'):
+for name in glob.glob('*_both.txt'):
     file_list.append(name)
 
 
@@ -26,7 +26,8 @@ for val in bin_width_array:
     bin_width=360/num_of_bins #the bin width is 360 degrees divided by the number of bins 
 
     for file in file_list:
-        if file[25:-9] not in ['GLY','AIB']: #just checking if the 'XXX_both.txt' file is for an achiral amino acid like GLY or AIB. 
+        file_AA_name=file.split('_')[0] #this split depends on the file list and file name, as we just want to isolate the AA name based on the MD data in the .txt files. Adjust as needed based on you file naming scheme
+        if file_AA_name not in ['GLY','AIB']: #just checking if the 'XXX_both.txt' file is for an achiral amino acid like GLY or AIB. 
 	        with open(file) as f:
 	            lines=f.readlines()
 	            phi_all=[]
@@ -52,13 +53,13 @@ for val in bin_width_array:
 	            prob_density_all_D=np.transpose(prob_density_all[::-1])
 
                 #Save the .npy files 
-	            np.save('numpys/'+str(num_of_bins)+'/'+str(file[25:-9])+'_'+str(num_of_bins)+'_L_0530.npy', prob_density_all_L)
-	            np.save('numpys/'+str(num_of_bins)+'/'+str(file[25:-9])+'_'+str(num_of_bins)+'_D_0530.npy', prob_density_all_D)
+	            np.save('numpys/'+str(num_of_bins)+'/'+str(file_AA_name)+'_'+str(num_of_bins)+'_L_0530.npy', prob_density_all_L)
+	            np.save('numpys/'+str(num_of_bins)+'/'+str(file_AA_name)+'_'+str(num_of_bins)+'_D_0530.npy', prob_density_all_D)
 
-	            print('done with'+str(file[25:-9])+'_'+str(num_of_bins))
+	            print('done with'+str(file_AA_name)+'_'+str(num_of_bins))
 
 
-        if file[25:-9] in ['GLY','AIB']: #If the amino acid is achiral, then we will symmetrize the (phi,psi) distribution such that the centrosymmetric points are averaged. 
+        if file_AA_name in ['GLY','AIB']: #If the amino acid is achiral, then we will symmetrize the (phi,psi) distribution such that the centrosymmetric points are averaged. 
 	        with open(file) as f:
 	            lines=f.readlines()
 	            phi_all=[]
@@ -110,7 +111,7 @@ for val in bin_width_array:
                 #Since these amino acids are achiral, there is no L- or D- form. 
                 #However, for consistent naming and reading during the encoding process, we will have a "L" numpy and "D" numpy for the achiral amino acid, but these numpys are identical. 
                 #(e.g., if you diff ALA_100_D_0530.npy ALA_100_L_0530.npy, they will differ. But if you diff AIB_100_D_0530.npy AIB_100_L_0530.npy, they will be the same). 
-	            np.save('numpys/'+str(num_of_bins)+'/'+str(file[25:-9])+'_'+str(num_of_bins)+'_L_0530.npy', prob_density_all_L)
-	            np.save('numpys/'+str(num_of_bins)+'/'+str(file[25:-9])+'_'+str(num_of_bins)+'_D_0530.npy', np.flip(prob_density_all_L))
-	            print('done with'+str(file[25:-9])+'_'+str(num_of_bins))
+	            np.save('numpys/'+str(num_of_bins)+'/'+str(file_AA_name)+'_'+str(num_of_bins)+'_L_0530.npy', prob_density_all_L)
+	            np.save('numpys/'+str(num_of_bins)+'/'+str(file_AA_name)+'_'+str(num_of_bins)+'_D_0530.npy', np.flip(prob_density_all_L))
+	            print('done with'+str(file_AA_name)+'_'+str(num_of_bins))
 
