@@ -15,7 +15,7 @@ This folder contains code and files related to our backbone features.
 
 1. Prepare a text file containing a peptide sequence(s). See "example_sequences.txt" as an example.
 
-2. Run the python script encoding_with_BB.py (example command: "python encoding_with_BB.py --f example_sequences.txt"). This script will take in a text file (containing a peptide sequence(s)) and output their BB feature encoded vector in csv format. "BB_encoded_example_sequences.csv" is an example output file from encoding_with_BB.py, given the example_sequences.txt as input.
+2. Run the python script "encoding_with_BB.py" (example command: "python encoding_with_BB.py --f example_sequences.txt"). This script will take in a text file (containing a peptide sequence(s)) and output their BB feature encoded vector in csv format. "BB_encoded_example_sequences.csv" is an example output file from "encoding_with_BB.py," given the example_sequences.txt as input.
 
 
 ## If you are interested in accessing the BB features used in our manuscript, we enclosed our data in the following folders:
